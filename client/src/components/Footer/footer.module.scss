@@ -1,0 +1,88 @@
+@import '../../../public/styles/variables.scss';
+
+/* ------------------------------------------------------------ *\
+	Footer
+\* ------------------------------------------------------------ */
+
+.footer {
+    & {
+        padding: 1rem 0;
+        font-size: 14px;
+        text-align: left;
+        background-color: $onyx;
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    .footer__title {
+        & {
+            position: relative;
+            margin-bottom: 1rem;
+            padding-bottom: .6rem;
+        }
+
+        &:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 100%;
+            background-color: $white;
+            height: 2px;
+            width: 30px;
+        }
+    }
+
+    .credentials {
+        margin: 0 5px;
+    }
+
+    .footer__content {
+        padding: 2rem 0;
+    }
+
+    // a:hover {
+    //     transform: scale(1.05)
+    // }
+    .logo-footer {
+        display: block;
+        padding-bottom: .8rem;
+    }
+
+    .copyright {
+        width: 100%;
+        border-top: 1px solid rgba(167, 180, 201, .1);
+        padding: .8rem 0 0;
+        text-align: center;
+    }
+
+    .socials {
+        li~li {
+            margin-left: 15px;
+        }
+    }
+
+    .list {
+        li {
+            list-style: none;
+            margin-bottom: .5rem;
+        }
+
+        a {
+            text-decoration: none;
+            font-size: 14px;
+        }
+    }
+
+    .list-mobile-apps {
+        li~li {
+            margin-left: 10px;
+        }
+    }
+}
+
+@media #{$mobile} {
+    .footer {
+        .col-12~.col-12 {
+            padding-top: 1.5rem;
+        }
+    }
+}

@@ -39,9 +39,9 @@ Dedicated mobile app for convenient ad posting and browsing on the go.
 
 ## 1. Initialize Project
 - [x] Initialize git repo
-- [] Add softuni practice server
-- [] Add base vite react project as client
-- [] CleanUp client
+- [x] Add softuni practice server
+- [x] Add base vite react project as client
+- [x] CleanUp client
 - [] Add project resources
 - [] Convert html to jsx
 - [] Separate html into components
