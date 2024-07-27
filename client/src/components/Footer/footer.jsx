@@ -4,20 +4,20 @@ import twitter from '/images/twitter.svg';
 import linkedin from '/images/linkedin.svg';
 import appleStore from '/images/apple-store.svg';
 import googleStore from '/images/google.svg';
-import './footer.module.scss';
+import styles from './footer.module.scss';
 
 export default function Footer() {
   return (
-      <footer className='footer'>
+    <footer className={styles.footer}>
         <div className="container">
-          <div className="footer__content">
+        <div className={styles.footer__content}>
             <div className="row align-items-top">
               <div className="col-12 col-sm-12 col-md-3">
-                <h5 className="footer__title">
+              <h5 className={styles.footer__title}>
                   About
                 </h5>
 
-                <div className="footer__entry">
+              <div className={styles.footer__entry}>
                   <p>
                     Here you can find interesting ads and easily contact the seller. If you want to buy something - you can find attractive offers at lower prices in the store. If you want to sell something - you can add an ad easily and for free and sell just about anything you want. Buy and sell at DailySale!
                   </p>
@@ -25,11 +25,11 @@ export default function Footer() {
               </div>
 
               <div className="col-12 col-sm-12 col-md-2">
-                <h5 className="footer__title">
+              <h5 className={styles.footer__title}>
                   Our Service
                 </h5>
 
-                <ul className="list list-links">
+              <ul className={`${styles.list} 'list-links'`}>
                   <li>
                     {/* <Link to='team'> */}
                       Our Team
@@ -64,7 +64,7 @@ export default function Footer() {
               </div>
 
               <div className="col-12 col-sm-12 col-md-3">
-                <h5 className="footer__title">
+              <h5 className={styles.footer__title}>
                   Contact
                 </h5>
 
@@ -122,11 +122,11 @@ export default function Footer() {
               </div>
 
               <div className="col-12 col-md-4 col-sm-12">
-                <h5 className="footer__title">
+              <h5 className={styles.footer__title}>
                   Subscribe
                 </h5>
 
-                <h5 className='mt-3 footer__title'>
+              <h5 className={`mt-3 ${styles.footer__title}`}>
                   Mobile apps
                 </h5>
 
@@ -148,11 +148,11 @@ export default function Footer() {
           </div>
 
           <div className="row">
-            <p className='copyright'>
+            <p className={styles.copyright}>
               Copyright &copy; {new Date().getFullYear()}
 
 
-              <a className='credentials' href="https://emilgeorgiev.000webhostapp.com/">
+              <a className={styles.credentials} href="https://emilgeorgiev.000webhostapp.com/">
                 Developed by
 
                 Emil Georgiev
