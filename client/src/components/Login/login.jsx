@@ -49,7 +49,7 @@ export default function Login() {
                                 <ul className="list-login-links">
                                     <li>
                                         Don't have account ?
-                                        <Link className='space' to='register'>
+                                        <Link className='space' to='/register'>
                                             Sign Up
                                         </Link>
                                     </li>

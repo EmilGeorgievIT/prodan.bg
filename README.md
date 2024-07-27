@@ -42,13 +42,13 @@ Dedicated mobile app for convenient ad posting and browsing on the go.
 - [x] Add softuni practice server
 - [x] Add base vite react project as client
 - [x] CleanUp client
-- [] Add project resources
-- [] Convert html to jsx
-- [] Separate html into components
+- [x] Add project resources
+- [x] Convert html to jsx
+- [x] Separate html into components
 ## 2. React Router
-- [] Install react-router-dom
-- [] Setup react-router-dom
-- [] Add routes in App.jsx
+- [x] Install react-router-dom
+- [x] Setup react-router-dom
+- [x] Add routes in App.jsx
 - [] Add links in the navigation
 ## 3. Create Service Layer
 - [] Service layer architecture disccusion

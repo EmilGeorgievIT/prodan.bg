@@ -55,7 +55,7 @@ export default function Register() {
                                 <ul className="list-login-links">
                                     <li>
                                         Already have an account ?
-                                        <Link className='space' to='login'>
+                                        <Link className='space' to='/login'>
                                             Sign In
                                         </Link>
                                     </li>

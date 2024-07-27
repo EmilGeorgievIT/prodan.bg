@@ -5,6 +5,8 @@ import Footer from './components/Footer/footer';
 import Home from './components/Home/home';
 import Login from './components/Login/login';
 import Register from './components/Register/register';
+import Profile from './components/Profile/profile';
+
 
 import '../public/styles/styles.scss';
 
@@ -17,6 +19,7 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
+          <Route path='/profile' element={<Profile />} />
         </Routes>
       </main>
       <Footer/>
