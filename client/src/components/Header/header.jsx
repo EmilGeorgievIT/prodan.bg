@@ -3,6 +3,7 @@ import  logo  from '../../../public/images/logo.jpeg';
 import { useState } from 'react';
 import styles from '../Header/header.module.scss';
 
+
 export default function Header() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
@@ -20,11 +21,11 @@ export default function Header() {
                 <div className="collapse navbar-collapse navigation-collapse" id="navbarNav">
                     <ul className={`${styles.navbarNav} navbar-nav`}>
                         <li className={`${styles.navItem} nav-item`}>
-                            {/* <Link to="/" className="btn btn-outline-primary"> */}
+                            <Link to="/" className="btn btn-outline-primary">
                                 <span>
                                     Home
                                 </span>
-                            {/* </Link> */}
+                            </Link>
                         </li>
 
                         <li  className={`${styles.navItem} nav-item`}>
@@ -61,9 +62,9 @@ export default function Header() {
                                 </button>
 
                                 <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    {/* <Link className={isAuthenticated ? 'dropdown-item sr-only' : 'dropdown-item'} to="/login"> */}
+                                    <Link className={isAuthenticated ? 'dropdown-item sr-only' : 'dropdown-item'} to="/login">
                                         Login
-                                    {/* </Link> */}
+                                    </Link>
 
                                     {/* <Link className={isAuthenticated ? 'dropdown-item sr-only' : 'dropdown-item'} to='/register'> */}
                                         Register

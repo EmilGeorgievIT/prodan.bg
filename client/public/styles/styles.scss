@@ -124,3 +124,13 @@ blockquote:last-child {
 .bg-white {
     background-color: $white;
 }
+
+.form-auth {
+    & {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 2rem;
+        background: $white;
+        box-shadow: 0 10px 40px 0 rgba(62, 57, 107, .1), 0 2px 9px 0 rgba(62, 57, 107, .1);
+    }
+}
