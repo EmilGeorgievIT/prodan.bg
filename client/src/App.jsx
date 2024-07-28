@@ -6,7 +6,7 @@ import Home from './components/Home/home';
 import Login from './components/Login/login';
 import Register from './components/Register/register';
 import Profile from './components/Profile/profile';
-
+import PostDetails from './components/PostDetails/postDetails';
 
 import '../public/styles/styles.scss';
 
@@ -20,6 +20,7 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
           <Route path='/profile' element={<Profile />} />
+          <Route path='/post/:id' element={<PostDetails />} />
         </Routes>
       </main>
       <Footer/>
