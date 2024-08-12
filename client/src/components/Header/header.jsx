@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom';
 import logo from '../../../public/images/logo.jpeg';
 import avatar from '../../../public/images/avatar.png';
-import { useState } from 'react';
+import { useAuthContext } from '../../contexts/AuthContext';
 import styles from '../Header/header.module.scss';
 
 
 export default function Header() { 
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
-
+    const { isAuthenticated } = useAuthContext();
+    console.log(isAuthenticated);
     return (
         <nav className={`${styles.navigation} navigation navbar navbar-expand-lg`}>
             <div className="container">
@@ -30,16 +30,16 @@ export default function Header() {
                         </li>
 
                         <li  className={`${styles.navItem} nav-item`}>
-
-                            {/* <Link to="/create/ad" className="btn btn-outline-primary d-flex"> */}
-                                {/* <i className="material-icons">add</i> */}
+                            
+                            <Link to="/create/ad" className="btn btn-outline-primary d-flex">
+                                <i className="material-icons">add</i>
 
                                 <span>
                                     Place Ad
                                 </span>
-                            {/* </Link> */}
+                            </Link>
 
-                            {/* <Link className="nav-link" to="/sign-up">Sign Up</Link> */}
+                            <Link className="nav-link" to="/sign-up">Sign Up</Link>
                         </li>
 
                         <li  className={`${styles.navItem} nav-item`}>
