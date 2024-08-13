@@ -1,14 +1,14 @@
 import Intro from '../Intro/intro';
 import PostSmall from '../PostSmall/postSmall';
 import bannerImage from '../../../public/images/banner.jpg';
-import * as adsAPI from "../../api/ads-api";
+import * as postsAPI from "../../api/ads-api";
 import { useState, useEffect } from 'react';
 
 export default function Home() {
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
-        adsAPI.getAll().then((posts) => setPosts(posts))
+        postsAPI.getAll().then((posts) => setPosts(posts))
     }, []);
 
     const imageBackground = {

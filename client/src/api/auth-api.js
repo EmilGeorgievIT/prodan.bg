@@ -11,4 +11,4 @@ export const login = (email, password) => request.post(`${BASE_URL.SERVER_URL}/u
 
 export const register = (email, password) => request.post(`${BASE_URL.SERVER_URL}/users/register`, { email, password });
 
-export const logout = () => request.get(`${SERVER_URL}/users/logout`);
+export const logout = () => request.get(`${BASE_URL.SERVER_URL}/users/logout`);

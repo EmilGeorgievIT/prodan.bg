@@ -1,0 +1,45 @@
+import { useEffect, useState } from 'react';
+import * as postAPI from '../api/ads-api';
+
+export function useGetAllPosts(postId = null) {
+    const [posts, setPosts] = useState([]);
+
+    useEffect(() => {
+        (async () => {
+            const result = await postAPI.getAll(postId);
+
+            setPosts(result);
+        })();
+    }, [postId]);
+
+    return [posts, setPosts];
+};
+
+export function useGetOnePost(postId) {
+    const [posts, setPosts] = useState({});
+
+    useEffect(() => {
+        (async () => {
+            const result = await postAPI.getOne(postId);
+
+            setPosts(result);
+        })();
+    }, [postId]);
+
+    return [
+        posts,
+        setPosts,
+    ];
+};
+
+export function useCreatePost() {
+    const postCreateHandler = (postData) => postAPI.create(postData);
+
+    return postCreateHandler;
+};
+
+export function useEditProjects() {
+    const editPostHandler = (postData, postId) => postAPI.update(postData, postId);
+
+    return editPostHandler;
+};

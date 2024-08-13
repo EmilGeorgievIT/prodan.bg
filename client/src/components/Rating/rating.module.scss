@@ -1,0 +1,81 @@
+@import '../../../public/styles/variables.scss';
+
+/* ------------------------------------------------------------ *\
+	Rating
+\* ------------------------------------------------------------ */
+.rating {
+    .star {
+        display: flex;
+        align-items: center;
+        flex: 0 1 5%;
+        max-width: 5%;
+
+        .material-icons {
+            color: #ffa22b;
+        }
+    }
+
+    .progress {
+        flex: 0 1 95%;
+        max-width: 95%;
+        margin-left: 10px;
+    }
+
+    .listRating {
+        & {
+            list-style: none;
+        }
+
+        li {
+            & {
+                display: flex;
+                align-items: center;
+                margin-bottom: 10px;
+            }
+
+            p {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+
+@media #{$mobile} {
+    .rating {
+        .list-rating {
+            li {
+                p {
+                    flex: 0 1 10%;
+                    max-width: 10%;
+                }
+            }
+        }
+
+        .progress {
+            & {
+                flex: 0 1 90%;
+                max-width: 90%;
+            }
+        }
+    }
+}
+
+@media #{$mobile-small} {
+    .rating {
+        .list-rating {
+            li {
+                p {
+                    flex: 0 1 15%;
+                    max-width: 15%;
+                }
+            }
+        }
+
+        .progress {
+            & {
+                flex: 0 1 85%;
+                max-width: 85%;
+            }
+        }
+    }
+}

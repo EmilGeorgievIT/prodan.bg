@@ -7,7 +7,7 @@ import styles from '../Header/header.module.scss';
 
 export default function Header() { 
     const { isAuthenticated } = useAuthContext();
-    console.log(isAuthenticated);
+    
     return (
         <nav className={`${styles.navigation} navigation navbar navbar-expand-lg`}>
             <div className="container">
@@ -38,8 +38,6 @@ export default function Header() {
                                     Place Ad
                                 </span>
                             </Link>
-
-                            <Link className="nav-link" to="/sign-up">Sign Up</Link>
                         </li>
 
                         <li  className={`${styles.navItem} nav-item`}>
@@ -63,7 +61,7 @@ export default function Header() {
                                         Register
                                     </Link>
 
-                                    <Link className={!isAuthenticated ? 'dropdown-item sr-only' : 'dropdown-item'} to='/'>
+                                    <Link className={!isAuthenticated ? 'dropdown-item sr-only' : 'dropdown-item'} to='/logout'>
                                         Logout
                                     </Link>
 

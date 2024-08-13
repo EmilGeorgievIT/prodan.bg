@@ -17,8 +17,8 @@ export const useLogin = () => {
 export const useRegister = () => {
     const { changeAuthState } = useAuthContext();
 
-    const registerHandler = async (email, password) => {
-        const { password: _, ...authData } = await register(email, password);
+    const registerHandler = async (name, email, password) => {
+        const { password: _, ...authData } = await register(name, email, password);
 
         changeAuthState(authData);
 

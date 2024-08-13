@@ -1,0 +1,231 @@
+@import '../../../public/styles/variables.scss';
+
+/* ------------------------------------------------------------ *\
+	User Profile
+\* ------------------------------------------------------------ */
+
+.userProfile {
+    .user__title {
+        font-weight: 500;
+        text-align: center;
+    }
+
+    .btn {
+        display: flex;
+        align-items: center;
+        font-size: .814rem;
+
+        .material-icons {
+            font-size: 20px;
+            margin-right: 5px;
+        }
+    }
+
+    .btn-user-ads {
+        display: inline-block !important;
+    }
+
+    .btn-success {
+        margin: 0 auto;
+    }
+
+    .btn~.btn {
+        margin-left: 5px;
+    }
+
+    .user__body~.user__body {
+        border: 1px solid #e8ebf3;
+    }
+
+    .list-socials {
+        padding: 0;
+    }
+
+    .list-contact {
+        & {
+            list-style: none;
+        }
+
+        li {
+            & {
+                display: flex;
+                align-items: center;
+                margin-bottom: .5rem;
+            }
+
+            .material-icons {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 30px;
+                height: 30px;
+                background-color: $silver;
+                border-radius: 50%;
+                margin-right: 5px;
+                font-size: 18px;
+            }
+        }
+    }
+
+    .user__image {
+        img {
+            width: 5rem;
+            height: 5rem;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+        }
+    }
+}
+
+// Small Desktop
+
+@media #{$small-desktop} {
+    .userProfile {
+        .user-actions {
+            & {
+                flex-wrap: wrap;
+            }
+
+            .btn {
+                width: 100%;
+                margin-bottom: 1rem;
+            }
+
+            .btn~.btn {
+                margin-left: 0;
+            }
+        }
+    }
+}
+
+// Extra small screen 
+
+@media #{$mobile-small} {
+    .userProfile {
+        .user-actions {
+            & {
+                flex-wrap: wrap;
+            }
+
+            .btn {
+                width: 100%;
+                margin-bottom: 1rem;
+            }
+
+            .btn~.btn {
+                margin-left: 0;
+            }
+        }
+    }
+}
+
+/* ------------------------------------------------------------ *\
+	Profile
+\* ------------------------------------------------------------ */
+
+.profile {
+    & {
+        padding: 2rem 0;
+    }
+
+    .profile__image {
+        position: relative;
+        padding: 1rem 0;
+        text-align: center;
+        ;
+        margin: 0 auto;
+
+        .change-image {
+            position: absolute;
+            z-index: 10;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+        }
+
+        .profile__image-hover {
+            & {
+                position: absolute;
+                top: 50%;
+                left: 0;
+                right: 0;
+                margin: auto;
+                transform: translateY(-50%);
+                opacity: 0;
+                visibility: hidden;
+                transition: opacity .4s;
+            }
+
+            .material-icons {
+                font-size: 40px;
+                color: $white;
+            }
+        }
+
+        img {
+            border-radius: 50%;
+            width: 5rem;
+            height: 5rem;
+        }
+    }
+
+    .profile__image:hover {
+        .profile__image-hover {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+
+    .profile__aside {
+        background-color: $white;
+    }
+
+    .profile__content {
+        background-color: $white;
+
+        .card-body {
+            display: block;
+        }
+    }
+}
+
+/* ------------------------------------------------------------ *\
+	Profile Tabs
+\* ------------------------------------------------------------ */
+
+.tab-pane-ads {
+    justify-content: flex-start;
+
+    .post {
+        flex: 0 1 33.33%;
+    }
+}
+
+.tab-pane-edit {
+    justify-content: flex-start;
+}
+
+@media(max-width: 1000px) {
+    .tab-pane-ads {
+        .post {
+            max-width: 50%;
+            flex: 0 1 50%;
+            margin: 0;
+        }
+    }
+}
+
+@media #{$mobile} {
+    .tab-pane-ads {
+        & {
+            justify-content: center !important;
+        }
+
+        .post {
+            flex: 0 1 100%;
+            max-width: 100%;
+        }
+    }
+}
