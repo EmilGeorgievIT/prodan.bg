@@ -79,19 +79,19 @@ export default function Profile() {
 
                                     <div className="card-body">
                                         <div className="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-
+1
                                         </div>
 
                                         <div className="tab-pane tab-pane-ads fade justify-content-flex-start d-flex flex-wrap" id="v-pills-ads" role="tabpanel" aria-labelledby="v-pills-ads-tab">
-
+2
                                         </div>
 
                                         <div className="tab-pane tab-pane-ads fade justify-content-flex-start d-flex flex-wrap" id="v-pills-favorite" role="tabpanel" aria-labelledby="v-pills-favorite-tab">
-
+3
                                         </div>
 
                                         <div className="tab-pane tab-pane-edit fade justify-content-flex-start d-flex flex-wrap" id="v-pills-edit" role="tabpanel" aria-labelledby="v-pills-edit-tab">
-
+4
                                         </div>
 
                                         <div className="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">

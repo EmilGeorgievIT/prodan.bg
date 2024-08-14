@@ -9,11 +9,11 @@ import Profile from './components/Profile/profile';
 import Logout from './components/Logout/logout';
 import PostDetails from './components/PostDetails/postDetails';
 import { AuthContextProvider } from './contexts/AuthContext';
-import PrivateGuard from './components/common/PrivateGuard';
-import AuthGuard from './components/common/AuthGuard';
+import PrivateGuard from './components/common/Guards/PrivateGuard';
+import AuthGuard from './components/common/Guards/AuthGuard';
+import PostCreate from './components/PostCreate/postCreate';
 
 import '../public/styles/styles.scss';
-
 
 function App() {
   return (
@@ -29,6 +29,7 @@ function App() {
           <Route element={<PrivateGuard/>}>
             <Route path='/profile' element={<Profile />} />  
             <Route path="/logout" element={<Logout />} />
+            <Route path="/post/create" element={<PostCreate />} />
           </Route>
           <Route path='/post/:postId' element={<PostDetails />} />
         </Routes>

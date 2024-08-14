@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export default function PostSmall({
     _id, image, view, description, title, location, date, price
-}) {    
+}) {
     const postImage = {
         width: "100%",
         backgroundPosition: 'center center',

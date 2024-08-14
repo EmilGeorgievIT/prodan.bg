@@ -9,7 +9,7 @@ export const getAll = async () => {
 
 export const getOne = (postId) => request.get(`${BASE_URL.SERVER_URL}/jsonstore/ads/${postId}`);
 
-export const create = (postData) => request.post(`${BASE_URL.SERVER_URL}`, postData);
+export const create = (postData) => request.post(`${BASE_URL.SERVER_URL}/jsonstore/ads`, postData);
 
 export const update = (postData, postId) => request.put(`${BASE_URL.SERVER_URL}/${postId}`, postData);
 

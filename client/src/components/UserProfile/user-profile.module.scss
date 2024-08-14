@@ -1,4 +1,4 @@
-@import '../../../public/styles/variables.scss';
+@import '/public/styles/variables.scss';
 
 /* ------------------------------------------------------------ *\
 	User Profile
@@ -37,11 +37,11 @@
         border: 1px solid #e8ebf3;
     }
 
-    .list-socials {
+    .listSocials {
         padding: 0;
     }
 
-    .list-contact {
+    .listContact {
         & {
             list-style: none;
         }

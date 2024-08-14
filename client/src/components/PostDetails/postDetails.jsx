@@ -1,5 +1,6 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { useState } from "react";
+
 
 import { useAuthContext } from "../../contexts/AuthContext";
 import { useGetOnePost } from "../../hooks/usePosts";
@@ -12,6 +13,7 @@ import UserProfile from "../UserProfile/userProfile";
 
 import banner from  '../../../public/images/banner.jpg';
 import { useGetOneUser } from "../../hooks/useUsers";
+import Modal from "../common/Modal/modal";
 
 export default function PostDetails() {
     const navigate = useNavigate();
@@ -26,6 +28,8 @@ export default function PostDetails() {
     
     const { isAuthenticated } = useAuthContext();
     
+    const isOwner = userId === post?.ownerId;
+
     const bannerImage = {
         backgroundImage: `url(${banner})`
     }
@@ -86,11 +90,28 @@ export default function PostDetails() {
                                     {...user}
                                     joined='1555536805497'
                                 />
+
+                                {isOwner && (
+                                    <div className='d-flex card'>
+                                        <Link to={`/post/${post._id}/edit`} className='btn btn-success btn-sm mb-1'>Edit</Link>
+                                        <button data-toggle="modal" data-target="#removeModal" data-placement="top" title="Remove Post" className=" btn btn-danger btn-sm">
+                                            Delete
+                                        </button>
+                                        {/* <Link to={`/post/${post._id}/delete`} onClick={() => setShowPostDeleteById(_id)} className='btn btn-danger'>Delete</Link> */}
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>       
+            </section>
+            
+            <Modal
+                title='Remove ad'
+                description='Do you want to remove this ad?'
+                submitButtonLabel='Remove'
+                idPost={post._id}
+            />
         </>
     );
 }

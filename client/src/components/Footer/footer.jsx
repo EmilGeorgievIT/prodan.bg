@@ -29,7 +29,7 @@ export default function Footer() {
                   Our Service
                 </h5>
 
-              <ul className={`${styles.list} 'list-links'`}>
+              <ul className={`${styles.list} list-links`}>
                   <li>
                     {/* <Link to='team'> */}
                       Our Team

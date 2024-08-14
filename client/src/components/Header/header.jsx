@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import logo from '../../../public/images/logo.jpeg';
-import avatar from '../../../public/images/avatar.png';
+import logo from '/images/logo.jpeg';
+import avatar from '/images/avatar.png';
 import { useAuthContext } from '../../contexts/AuthContext';
 import styles from '../Header/header.module.scss';
 
@@ -30,8 +30,7 @@ export default function Header() {
                         </li>
 
                         <li  className={`${styles.navItem} nav-item`}>
-                            
-                            <Link to="/create/ad" className="btn btn-outline-primary d-flex">
+                            <Link to="/post/create" className="btn btn-outline-primary d-flex">
                                 <i className="material-icons">add</i>
 
                                 <span>
