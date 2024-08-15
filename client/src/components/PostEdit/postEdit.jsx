@@ -1,20 +1,15 @@
+import { useState } from 'react';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import Intro from "../Intro/intro";
 import bannerImage from '/images/banner2.jpg';
-import { useAuthContext } from "../../contexts/AuthContext";
 import { useNavigate, useParams } from "react-router-dom";
-import { useState } from "react";
 import { useGetOnePost, useEditPosts } from "../../hooks/usePosts";
 
 const addPostSchema = Yup.object().shape({
     title: Yup.string()
         .min(2, 'Too Short!')
         .max(50, 'Too Long!')
-        .required('Required'),
-    category: Yup.string()
-        .required('Required'),
-    condition: Yup.string()
         .required('Required'),
     description: Yup.string()
         .min(10, 'Too Short!')
@@ -34,7 +29,10 @@ const addPostSchema = Yup.object().shape({
 });
 
 export default function PostEdit() {
+    const [image, setImage] = useState('');
+
     const handleImage = (e) => {
+        console.log(e);
 
         let files = e.target.files;
 
@@ -44,13 +42,11 @@ export default function PostEdit() {
 
             reader.readAsDataURL(file);
             reader.onload = () => {
-                setImage(reader.result)
+                setImage(reader.result);
             }
         }
-        console.log(image);
     }
 
-    const [image, setImage] = useState('');
     const items = [
         { name: 'House & DIY', icon: 'home' },
         { name: 'Animals', icon: 'pets' },
@@ -70,7 +66,6 @@ export default function PostEdit() {
     ]
     const { postId } = useParams();
     const [post] = useGetOnePost(postId);
-
     const navigate = useNavigate();
     const editPost = useEditPosts();
     console.log(post);
@@ -91,15 +86,12 @@ export default function PostEdit() {
                             <div className="col-lg-8 col-md-12">
                                 <div className="section__content">
                                     <Formik
-                                        initialValues={{
-                                            ...post
-                                        }}
-
+                                        enableReinitialize={true}
+                                        initialValues={{ ...post, image: '' }}
                                         validationSchema={addPostSchema}
-
                                         onSubmit={values => {
                                             try {
-                                                editPost({ ...values, image }).then((postData) => {
+                                                editPost({ ...values, image }, post._id).then((postData) => {
                                                     navigate(`/post/${postData._id}`);
                                                 })
                                             } catch (error) {
@@ -107,129 +99,133 @@ export default function PostEdit() {
                                             }
                                         }}
                                     >
-                                        {({ errors, touched }) => (
-                                            <Form className='form-add card'>
-                                                <div className="form__head card-header">
-                                                    <h4 className='card-title'>
-                                                        Edit post
-                                                    </h4>
-                                                </div>
-
-                                                <div className="from__body card-body">
-                                                    <div className="form-row">
-                                                        <div className="form-group col">
-                                                            <label htmlFor="title">Ad Title *</label>
-
-                                                            <Field className="form-control" id="title" placeholder="Title" name="title" required />
-                                                            {errors.title && touched.title ? (
-                                                                <div className="invalid-feedback">{errors.title}</div>
-                                                            ) : null}
-                                                        </div>
+                                        {({ errors, touched }) => { 
+                                            console.log(errors);
+                                            console.log(touched);
+                                            return (
+                                                <Form className='form-add card'>
+                                                    <div className="form__head card-header">
+                                                        <h4 className='card-title'>
+                                                            Edit post
+                                                        </h4>
                                                     </div>
 
-                                                    <div className="form-row ">
-                                                        <div className="form-group col">
-                                                            <label htmlFor="category-select">Category *</label>
+                                                    <div className="from__body card-body">
+                                                        <div className="form-row">
+                                                            <div className="form-group col">
+                                                                <label htmlFor="title">Ad Title *</label>
 
-                                                            <Field id='category-select' className="custom-select" component="select" name="category">
-                                                                {
-                                                                    items.map((item, index) =>
-                                                                        <option key={index}>
-                                                                            {item.name}
-                                                                        </option>
-                                                                    )
-                                                                }
-
-                                                                {errors.category && touched.category ? (
-                                                                    <div className="invalid-feedback">{errors.category}</div>
+                                                                <Field className="form-control" id="title" placeholder="Title" name="title" required />
+                                                                {errors.title && touched.title ? (
+                                                                    <div className="invalid-feedback">{errors.title}</div>
                                                                 ) : null}
-                                                            </Field>
+                                                            </div>
                                                         </div>
+
+                                                        <div className="form-row ">
+                                                            <div className="form-group col">
+                                                                <label htmlFor="category-select">Category *</label>
+
+                                                                <Field id='category-select' className="custom-select" component="select" name="category">
+                                                                    {
+                                                                        items.map((item, index) =>
+                                                                            <option key={index}>
+                                                                                {item.name}
+                                                                            </option>
+                                                                        )
+                                                                    }
+
+                                                                    {errors.category && touched.category ? (
+                                                                        <div className="invalid-feedback">{errors.category}</div>
+                                                                    ) : null}
+                                                                </Field>
+                                                            </div>
+                                                        </div>
+
+                                                        <div className="form-row">
+                                                            <div className="form-group col-md-6 col-sm-12">
+                                                                <label htmlFor="price">Price *</label>
+
+                                                                <Field className='form-control' placeholder='0$' name="price" id="price" />
+                                                                {errors.price && touched.price ? (
+                                                                    <div className='invalid-feedback'>{errors.price}</div>
+                                                                ) : null}
+                                                            </div>
+
+                                                            <div className="form-group col-md-6 col-sm-12">
+                                                                <label htmlFor="condition">Condition *</label>
+
+                                                                <Field name='condition' component="select" id='condition-select' className="custom-select">
+                                                                    <option name='condition'>New</option>
+                                                                    <option name='condition'>Used</option>
+                                                                </Field>
+                                                            </div>
+                                                        </div>
+
+                                                        <div className="form-row">
+                                                            <div className="form-group col">
+                                                                <label htmlFor="description">Description *</label>
+
+                                                                <Field component='textarea' className="form-control" id="description" name='description' placeholder='text here..' rows="3" required />
+                                                                {errors.description && touched.description ? (
+                                                                    <div className='invalid-feedback'>{errors.description}</div>
+                                                                ) : null}
+                                                            </div>
+                                                        </div>
+
+                                                        <div className="form-row">
+                                                            <div className="form-group col-md-6 col-sm-12">
+                                                                <label htmlFor="location">Location *</label>
+
+                                                                <Field type="text" name="location" id="location" placeholder='Ireland' className='form-control' />
+                                                                {errors.location && touched.location ? (
+                                                                    <div className='invalid-feedback'>{errors.location}</div>
+                                                                ) : null}
+                                                            </div>
+
+                                                            <div className="form-group col-md-6 col-sm-12">
+                                                                <label htmlFor="phone">Phone Number *</label>
+
+                                                                <Field type="text" name="phoneNumber" id="phone" placeholder='083XXXXXXX' className='form-control' />
+                                                                {errors.phoneNumber && touched.phoneNumber ? (
+                                                                    <div className='invalid-feedback'>{errors.phoneNumber}</div>
+                                                                ) : null}
+                                                            </div>
+                                                        </div>
+
+                                                        <div className="form-row">
+                                                            <div className="form-group col">
+                                                                <label htmlFor="email">Email *</label>
+
+                                                                <Field type="email" name="email" placeholder='example@gmail.com' id="email" className='form-control' />
+                                                                {errors.email && touched.email ? (
+                                                                    <div className='invalid-feedback'>{errors.email}</div>
+                                                                ) : null}
+                                                            </div>
+                                                        </div>
+
+                                                        <div className="form-row">
+                                                            <div className="custom-file">
+                                                                <Field onChange={handleImage} type="file" className="custom-file-input" name='image' id="image" />
+
+                                                                <label className="custom-file-label" htmlFor="validatedCustomFile">Choose file...</label>
+
+                                                                {!image && touched.image ? (
+                                                                    <div className='invalid-feedback'>Required</div>
+                                                                ) : null}
+                                                            </div>
+                                                        </div>
+
                                                     </div>
 
-                                                    <div className="form-row">
-                                                        <div className="form-group col-md-6 col-sm-12">
-                                                            <label htmlFor="price">Price *</label>
-
-                                                            <Field className='form-control' placeholder='0$' name="price" id="price" />
-                                                            {errors.price && touched.price ? (
-                                                                <div className='invalid-feedback'>{errors.price}</div>
-                                                            ) : null}
-                                                        </div>
-
-                                                        <div className="form-group col-md-6 col-sm-12">
-                                                            <label htmlFor="condition">Condition *</label>
-
-                                                            <Field name='condition' component="select" id='condition-select' className="custom-select">
-                                                                <option name='condition'>New</option>
-                                                                <option name='condition'>Used</option>
-                                                            </Field>
-                                                        </div>
+                                                    <div className="form-actions card-footer">
+                                                        <button type="submit" className="btn btn-primary">
+                                                            Edit
+                                                        </button>
                                                     </div>
-
-                                                    <div className="form-row">
-                                                        <div className="form-group col">
-                                                            <label htmlFor="description">Description *</label>
-
-                                                            <Field component='textarea' className="form-control" id="description" name='description' placeholder='text here..' rows="3" required />
-                                                            {errors.description && touched.description ? (
-                                                                <div className='invalid-feedback'>{errors.description}</div>
-                                                            ) : null}
-                                                        </div>
-                                                    </div>
-
-                                                    <div className="form-row">
-                                                        <div className="form-group col-md-6 col-sm-12">
-                                                            <label htmlFor="location">Location *</label>
-
-                                                            <Field type="text" name="location" id="location" placeholder='Ireland' className='form-control' />
-                                                            {errors.location && touched.location ? (
-                                                                <div className='invalid-feedback'>{errors.location}</div>
-                                                            ) : null}
-                                                        </div>
-
-                                                        <div className="form-group col-md-6 col-sm-12">
-                                                            <label htmlFor="phone">Phone Number *</label>
-
-                                                            <Field type="text" name="phoneNumber" id="phone" placeholder='083XXXXXXX' className='form-control' />
-                                                            {errors.phoneNumber && touched.phoneNumber ? (
-                                                                <div className='invalid-feedback'>{errors.phoneNumber}</div>
-                                                            ) : null}
-                                                        </div>
-                                                    </div>
-
-                                                    <div className="form-row">
-                                                        <div className="form-group col">
-                                                            <label htmlFor="email">Email *</label>
-
-                                                            <Field type="email" name="email" placeholder='example@gmail.com' id="email" className='form-control' />
-                                                            {errors.email && touched.email ? (
-                                                                <div className='invalid-feedback'>{errors.email}</div>
-                                                            ) : null}
-                                                        </div>
-                                                    </div>
-
-                                                    <div className="form-row">
-                                                        <div className="custom-file">
-                                                            <Field onChange={handleImage} type="file" className="custom-file-input" name='image' id="image" />
-
-                                                            <label className="custom-file-label" htmlFor="validatedCustomFile">Choose file...</label>
-
-                                                            {!image && touched.image ? (
-                                                                <div className='invalid-feedback'>Required</div>
-                                                            ) : null}
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-
-                                                <div className="form-actions card-footer">
-                                                    <button type="submit" className="btn btn-primary">
-                                                        Edit
-                                                    </button>
-                                                </div>
-                                            </Form>
-                                        )}
+                                                </Form>
+                                            )
+                                        }}
                                     </Formik>
                                 </div>
                             </div>
