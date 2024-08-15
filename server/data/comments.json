@@ -1,0 +1,22 @@
+{
+    "333451f7-9830-4046-84fe-59cf0a6e28ea": {
+        "postId": "66bcf558-95a9-45a6-be61-175650288b4c",
+        "text": "Lorem ipsum",
+        "title": "Test",
+        "date": "Thu Aug 15 2024",
+        "author": {
+            "email": "admin2@abv.bg"
+        },
+        "_id": "333451f7-9830-4046-84fe-59cf0a6e28ea"
+    },
+    "26ec60c6-95f3-4e14-bf11-ebb338dadecc": {
+        "postId": "040e7e97-667a-42a1-8eca-7f52771a8602",
+        "text": "Lorem ipsum 2 ",
+        "title": "Test",
+        "date": "Thu Aug 10 2024",
+        "author": {
+            "email": "admin@abv.bg"
+        },
+        "_id": "26ec60c6-95f3-4e14-bf11-ebb338dadecc"
+    }
+}

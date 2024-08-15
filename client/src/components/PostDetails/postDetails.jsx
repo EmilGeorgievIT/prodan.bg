@@ -4,12 +4,15 @@ import { useState } from "react";
 
 import { useAuthContext } from "../../contexts/AuthContext";
 import { useGetOnePost, useDeletePost } from "../../hooks/usePosts";
+import { useCreateComment, useGetAllComments } from "../../hooks/useComments";
 
 import Gallery from "../Gallery/gallery";
 import Description from "../Description/description";
 import Rating from "../Rating/rating";
 import Intro from "../Intro/intro";
 import UserProfile from "../UserProfile/userProfile";
+import Comment from "../Comment/comment";
+import AddComment from "../AddComment/addComment";
 
 import banner from  '../../../public/images/banner.jpg';
 import { useGetOneUser } from "../../hooks/useUsers";
@@ -19,13 +22,13 @@ export default function PostDetails() {
     const navigate = useNavigate();
     const [error, setError] = useState('');
     const { postId } = useParams();
-    // const [comments, dispatch] = useGetAllComents(projectId);
     // const createComment = useCreateComment();
     const [showProjectDeleteById, setShowProjectDeleteById] = useState(null);
     const { email, userId } = useAuthContext();
     const [post] = useGetOnePost(postId);
     const [user] = useGetOneUser(post?.ownerId);
-    
+    const [comments, dispatch] = useGetAllComments(postId);
+
     const { isAuthenticated } = useAuthContext();
     
     const isOwner = userId === post?.ownerId;
@@ -50,6 +53,8 @@ export default function PostDetails() {
         await deletePost(postId);
         navigate("/");
     }
+
+    console.log(comments)
 
     return (
         <>
@@ -79,15 +84,17 @@ export default function PostDetails() {
                                     rating={post.rating || ''}
                                 />
 
-                                {/* {
+                                {
                                     comments.map(item => (
                                         <Comment
                                             key={item._id}
                                             {...item}
                                         />
                                     ))
-                                } */}
-                                {/* <AddComment handleComment={this.addCommentFromChild} postId={this.props.match.params.id} /> */}
+                                }
+                                {
+                                    isAuthenticated && (<AddComment />)
+                                }
                             </div>
                         </div>
 
@@ -101,10 +108,10 @@ export default function PostDetails() {
                                 {isOwner && (
                                     <div className='d-flex card'>
                                         <Link to={`/post/edit/${post._id}`} className='btn btn-success btn-sm mb-1'>Edit</Link>
+                                        
                                         <button data-toggle="modal" data-target="#removeModal" data-placement="top" title="Remove Post" className=" btn btn-danger btn-sm">
                                             Delete
                                         </button>
-                                        {/* <Link to={`/post/${post._id}/delete`} onClick={() => setShowPostDeleteById(_id)} className='btn btn-danger'>Delete</Link> */}
                                     </div>
                                 )}
                             </div>
