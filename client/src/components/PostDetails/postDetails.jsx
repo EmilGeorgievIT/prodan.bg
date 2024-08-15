@@ -3,7 +3,7 @@ import { useState } from "react";
 
 
 import { useAuthContext } from "../../contexts/AuthContext";
-import { useGetOnePost } from "../../hooks/usePosts";
+import { useGetOnePost, useDeletePost } from "../../hooks/usePosts";
 
 import Gallery from "../Gallery/gallery";
 import Description from "../Description/description";
@@ -43,6 +43,13 @@ export default function PostDetails() {
         height: '100%',
         backgroundImage: "url(" + post.image + ")"
     };
+
+
+    const postDeleteHandler = async (postId) => {
+        const deletePost = useDeletePost();
+        await deletePost(postId);
+        navigate("/");
+    }
 
     return (
         <>
@@ -93,7 +100,7 @@ export default function PostDetails() {
 
                                 {isOwner && (
                                     <div className='d-flex card'>
-                                        <Link to={`/post/${post._id}/edit`} className='btn btn-success btn-sm mb-1'>Edit</Link>
+                                        <Link to={`/post/edit/${post._id}`} className='btn btn-success btn-sm mb-1'>Edit</Link>
                                         <button data-toggle="modal" data-target="#removeModal" data-placement="top" title="Remove Post" className=" btn btn-danger btn-sm">
                                             Delete
                                         </button>
@@ -110,6 +117,7 @@ export default function PostDetails() {
                 title='Remove ad'
                 description='Do you want to remove this ad?'
                 submitButtonLabel='Remove'
+                onSubmit={() => postDeleteHandler(post._id)}
                 idPost={post._id}
             />
         </>

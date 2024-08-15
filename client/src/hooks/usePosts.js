@@ -38,8 +38,15 @@ export function useCreatePost() {
     return postCreateHandler;
 };
 
-export function useEditProjects() {
+export function useEditPosts() {
     const editPostHandler = (postData, postId) => postAPI.update(postData, postId);
 
     return editPostHandler;
+};
+
+
+export function useDeletePost() {
+    const deletePostHandler = (postId) => postAPI.deleteOne(postId);
+
+    return deletePostHandler;
 };

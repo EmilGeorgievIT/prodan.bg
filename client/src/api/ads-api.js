@@ -13,4 +13,4 @@ export const create = (postData) => request.post(`${BASE_URL.SERVER_URL}/jsonsto
 
 export const update = (postData, postId) => request.put(`${BASE_URL.SERVER_URL}/${postId}`, postData);
 
-export const deleteOne = (postId) => request.del(`${BASE_URL.SERVER_URL}/${postId}`);
+export const deleteOne = (postId) => request.del(`${BASE_URL.SERVER_URL}/jsonstore/ads/${postId}`);

@@ -14,6 +14,7 @@ import AuthGuard from './components/common/Guards/AuthGuard';
 import PostCreate from './components/PostCreate/postCreate';
 
 import '../public/styles/styles.scss';
+import PostEdit from './components/PostEdit/postEdit';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
             <Route path='/profile' element={<Profile />} />  
             <Route path="/logout" element={<Logout />} />
             <Route path="/post/create" element={<PostCreate />} />
+            <Route path="/post/edit/:postId" element={<PostEdit />} />
           </Route>
           <Route path='/post/:postId' element={<PostDetails />} />
         </Routes>
