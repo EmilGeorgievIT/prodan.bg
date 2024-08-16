@@ -1,7 +1,17 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styles from '../Profile/profile.module.scss';
+import * as postsAPI from "../../api/ads-api";
+import PostSmall from "../PostSmall/postSmall";
+import avatar from '/images/avatar.png';
 
 export default function Profile() {
+    const [posts, setPosts] = useState([]);
+
+    useEffect(() => {
+        postsAPI.getAll().then((posts) => setPosts(posts))
+    }, []);
+
     return (
         <>
             <div className={styles.profile}>
@@ -17,13 +27,7 @@ export default function Profile() {
                                     </div>
 
                                     <div className={styles.profile__image}>
-                                        {/* <img src={image} alt="" /> */}
-
-                                        <input type="file" className={styles.changeImage} id="image" />
-
-                                        <div className={styles.profile__imageHover}>
-                                            <i className="material-icons">camera_alt</i>
-                                        </div>
+                                        <img src={avatar} alt="" />
                                     </div>
 
                                     <h5 className='mb-3 text-center font-weight-semibold'>
@@ -31,31 +35,15 @@ export default function Profile() {
                                     </h5>
 
                                     <div className="nav flex-column nav-pills nav-profile" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                                        <a className="nav-link active" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">
-                                            <i className="material-icons">person</i> Edit Profile
-                                        </a>
-
                                         <a className="nav-link" id="v-pills-ads-tab" data-toggle="pill" href="#v-pills-ads" role="tab" aria-controls="v-pills-ads" aria-selected="false">
                                             <i className="material-icons">business</i>
                                             My Ads
-                                        </a>
-
-                                        <a className="nav-link" id="v-pills-ads-tab" data-toggle="pill" href="#v-pills-favorite" role="tab" aria-controls="v-pills-favorite" aria-selected="false">
-                                            <i className="material-icons">favorite</i>
-
-                                            My Favorite
                                         </a>
 
                                         <a className="nav-link" id="v-pills-edit-tab" data-toggle="pill" href="#v-pills-edit" role="tab" aria-controls="v-pills-edit" aria-selected="false">
                                             <i className="material-icons">edit</i>
 
                                             Edit My Ads
-                                        </a>
-
-                                        <a className="nav-link" role="tab" aria-controls="v-pills-messages" aria-selected="false">
-                                            <i className="material-icons">message</i>
-
-                                            My Messages
                                         </a>
 
                                         <a className="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">
@@ -79,19 +67,11 @@ export default function Profile() {
 
                                     <div className="card-body">
                                         <div className="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-1
+                                            
                                         </div>
 
                                         <div className="tab-pane tab-pane-ads fade justify-content-flex-start d-flex flex-wrap" id="v-pills-ads" role="tabpanel" aria-labelledby="v-pills-ads-tab">
-2
-                                        </div>
-
-                                        <div className="tab-pane tab-pane-ads fade justify-content-flex-start d-flex flex-wrap" id="v-pills-favorite" role="tabpanel" aria-labelledby="v-pills-favorite-tab">
-3
-                                        </div>
-
-                                        <div className="tab-pane tab-pane-edit fade justify-content-flex-start d-flex flex-wrap" id="v-pills-edit" role="tabpanel" aria-labelledby="v-pills-edit-tab">
-4
+                                            {posts.map((item) => <PostSmall key={item._id}  {...item} />)}
                                         </div>
 
                                         <div className="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">

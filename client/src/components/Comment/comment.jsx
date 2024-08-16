@@ -1,6 +1,6 @@
 import avatar from '/images/avatar.png';
 
-export default function Comment({ title, date, comment }) {
+export default function Comment({ title, date, text }) {
     return (
         <div className='card comment'>
             <div className="card-body comment__body">
@@ -40,7 +40,7 @@ export default function Comment({ title, date, comment }) {
                     </div>
 
                     <div className="comment__description">
-                        {comment}
+                        {text}
                     </div>
                 </div>
             </div>
