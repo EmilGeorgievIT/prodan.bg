@@ -7,6 +7,14 @@ export const getAll = async () => {
     return posts;
 };
 
+export const getAllByUserId = async (userId) => {
+    const params = new URLSearchParams({
+        where: `ownerId="${userId}"`
+    });
+    const response = await request.get(`${BASE_URL.SERVER_URL}/jsonstore/ads?${params.toString()}`);
+    return Object.values(response);
+};
+
 export const getOne = (postId) => request.get(`${BASE_URL.SERVER_URL}/jsonstore/ads/${postId}`);
 
 export const create = (postData) => request.post(`${BASE_URL.SERVER_URL}/jsonstore/ads`, postData);

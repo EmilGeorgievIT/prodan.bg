@@ -4,12 +4,14 @@ import styles from '../Profile/profile.module.scss';
 import * as postsAPI from "../../api/ads-api";
 import PostSmall from "../PostSmall/postSmall";
 import avatar from '/images/avatar.png';
+import { useAuthContext } from "../../contexts/AuthContext";
 
 export default function Profile() {
     const [posts, setPosts] = useState([]);
+    const {  userId } = useAuthContext();
 
     useEffect(() => {
-        postsAPI.getAll().then((posts) => setPosts(posts))
+        postsAPI.getAllByUserId(userId).then((posts) => setPosts(posts))
     }, []);
 
     return (
