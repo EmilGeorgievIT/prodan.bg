@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import { useAuthContext } from "../../contexts/AuthContext";
 import { useGetOnePost, useDeletePost } from "../../hooks/usePosts";
-import { useCreateComment, useGetAllComments } from "../../hooks/useComments";
+import { useGetAllComments } from "../../hooks/useComments";
 
 import Gallery from "../Gallery/gallery";
 import Description from "../Description/description";
@@ -93,7 +93,9 @@ export default function PostDetails() {
                                     ))
                                 }
                                 {
-                                    isAuthenticated && (<AddComment />)
+                                    isAuthenticated && (
+                                        <AddComment
+                                    />)
                                 }
                             </div>
                         </div>

@@ -11,19 +11,13 @@ function commentsReducer(state, action) {
             return state;
     }
 };
-// TODO fix issue with add comment
-export function useAddComment(postId, comment) {
-    const [comment, dispatch] = useReducer(commentsReducer, []);
 
-    useEffect(() => {
-        (async () => {
-            const result = await commentsAPI.create(postId, comment);
-            dispatch({ type: 'ADD_COMMENT', payload: comment });
-        })();
-    }, [postId]);
+export function useCreateComment() {
+    const createHandler = (postId, comment) => commentsAPI.create(postId, comment);
 
-    return [comment, dispatch];
+    return createHandler;
 };
+
 
 
 export function useGetAllComments(postId) {

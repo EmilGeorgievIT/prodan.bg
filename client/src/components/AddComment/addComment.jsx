@@ -1,6 +1,6 @@
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-import { useAddComment } from "../../hooks/useComments";
+import { useCreateComment, useGetAllComments } from "../../hooks/useComments";
 import { useParams, useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../contexts/AuthContext";
 
@@ -20,11 +20,11 @@ const addCommentSchema = Yup.object().shape({
 
 
 export default function AddComment() {
-    const createComment = useCreateComment();
     const navigate = useNavigate();
     const { postId } = useParams();
     const { userId } = useAuthContext();
-    const [comment, dispatch] = useAddComment();
+    const createComment = useCreateComment();
+    const [, dispatch] = useGetAllComments(postId);
 
     return (
         <>
@@ -48,10 +48,10 @@ export default function AddComment() {
 
                         onSubmit={(values, { resetForm }) => {
                             try {
-                                console.log({ ...values })
-                                dispatch(postId, { ...values }).then(() => {
+                                createComment(postId, values).then((newComment) => {
+                                    dispatch({ type: 'ADD_COMMENT', payload: { ...newComment, author: { email } } });
                                     resetForm();
-                                })
+                                });
                             } catch (error) {
                                 console.log(error);
                             }
