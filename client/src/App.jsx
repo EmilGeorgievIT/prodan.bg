@@ -17,6 +17,7 @@ import '../public/styles/styles.scss';
 import PostEdit from './components/PostEdit/postEdit';
 
 function App() {
+
   return (
     <AuthContextProvider>
       <Header />

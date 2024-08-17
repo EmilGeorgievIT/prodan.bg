@@ -37,6 +37,10 @@ async function request(method, url, data) {
 
         return result;
     } catch (error) {
+        if (error.code === 403) {
+            window.location.href = '/logout';
+        };
+
         console.error('Request failed:', error); // Debugging line
         throw error;
     }
