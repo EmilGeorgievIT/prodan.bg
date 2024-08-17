@@ -47,22 +47,6 @@
       "streetNumber": "7"
     }
   },
-  "60f0cf0b-34b0-4abd-9769-8c42f830dffc": {
-  "firstName": "Admin",
-  "lastName": "admin",
-  "email": "admin@gmail.com",
-  "phoneNumber": "0897765506",
-  "createdAt": "2023-11-01T07:22:00.358Z",
-  "updatedAt": "2023-11-01T07:22:00.358Z",
-  "imageUrl": "https://softuni.bg/users/profile/showavatar/434a901c-f22a-46b1-a4fb-63633ed5f874",
-  "address": {
-    "country": "Bulgaria",
-    "city": "Sofia",
-    "street": "Pencho",
-    "streetNumber": "66"
-  },
-  "_id": "60f0cf0b-34b0-4abd-9769-8c42f830dffc"
-  },
   "32fd44ad-7983-42c3-9f25-ccd106a8d8ff": {
     "firstName": "Emil",
     "lastName": "Georgiev",
@@ -72,10 +56,10 @@
     "updatedAt": "2023-11-01T07:22:00.358Z",
     "imageUrl": "https://softuni.bg/users/profile/showavatar/434a901c-f22a-46b1-a4fb-63633ed5f874",
     "address": {
-      "country": "Germany",
-      "city": "Berlin",
-      "street": "Esa",
-      "streetNumber": "12"
+      "country": "България",
+      "city": "София",
+      "street": "Отец Паийси",
+      "streetNumber": "66"
     },
     "_id": "32fd44ad-7983-42c3-9f25-ccd106a8d8ff"
   }
