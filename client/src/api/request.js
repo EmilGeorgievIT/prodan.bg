@@ -37,7 +37,7 @@ async function request(method, url, data) {
 
         return result;
     } catch (error) {
-        if (error.code === 403) {
+        if (error.code === 403 && error.message === 'Invalid access token') {
             window.location.href = '/logout';
         };
 

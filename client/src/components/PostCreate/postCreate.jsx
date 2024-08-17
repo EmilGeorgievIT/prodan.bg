@@ -50,7 +50,7 @@ export default function PostCreate() {
         console.log(image);
     }
 
-    const { isAuthenticated } = useAuthContext();
+    const { isAuthenticated, userId } = useAuthContext();
 
     const [submitted, setSubmitted] = useState({});
     const [image, setImage] = useState('');
@@ -108,7 +108,7 @@ export default function PostCreate() {
                                     
                                     onSubmit={values => {
                                         try {
-                                            createPost({ ...values, image }).then((postData) => {
+                                            createPost({ ...values, image, ownerId: userId }).then((postData) => {
                                                 navigate(`/post/${postData._id}`);
                                             })
                                         } catch(error) {

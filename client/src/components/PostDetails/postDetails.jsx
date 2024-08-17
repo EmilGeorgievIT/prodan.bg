@@ -36,7 +36,7 @@ export default function PostDetails() {
     const bannerImage = {
         backgroundImage: `url(${banner})`
     }
-
+    
     const postImage = {
         width: "100%",
         backgroundPosition: 'center center',
@@ -53,8 +53,6 @@ export default function PostDetails() {
         await deletePost(postId);
         navigate("/");
     }
-
-    console.log(comments)
 
     return (
         <>
