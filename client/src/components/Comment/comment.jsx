@@ -1,6 +1,6 @@
 import avatar from '/images/avatar.png';
 
-export default function Comment({ title, _createdOn, comment }) {
+export default function Comment({ title, _createdOn, comment, email }) {
     return (
         <div className='card comment'>
             <div className="card-body comment__body">
@@ -23,6 +23,16 @@ export default function Comment({ title, _createdOn, comment }) {
                                 {
                                     <span>
                                         {(new Date(_createdOn)).toLocaleDateString('en-US', 'short')}
+                                    </span>
+                                }
+                            </li>
+
+                            <li>
+                                <i className="material-icons">email</i>
+
+                                {
+                                    <span>
+                                        { email }
                                     </span>
                                 }
                             </li>
