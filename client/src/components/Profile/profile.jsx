@@ -8,7 +8,7 @@ import { useAuthContext } from "../../contexts/AuthContext";
 
 export default function Profile() {
     const [posts, setPosts] = useState([]);
-    const {  userId } = useAuthContext();
+    const { email, userId } = useAuthContext();
 
     useEffect(() => {
         postsAPI.getAllByUserId(userId).then((posts) => setPosts(posts))
@@ -33,7 +33,7 @@ export default function Profile() {
                                     </div>
 
                                     <h5 className='mb-3 text-center font-weight-semibold'>
-
+                                        Email: {email}
                                     </h5>
 
                                     <div className="nav flex-column nav-pills nav-profile" id="v-pills-tab" role="tablist" aria-orientation="vertical">
