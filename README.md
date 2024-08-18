@@ -50,7 +50,7 @@ Development progress
 - [x] Install react-router-dom
 - [x] Setup react-router-dom
 - [x] Add routes in App.jsx
-- [] Add links in the navigation
+- [x] Add links in the navigation
 ## 3. Create Service Layer
 - [x] Service layer architecture discursion
 - [x] Abstract requester
@@ -69,8 +69,6 @@ Development progress
 - [x] Read comments from server
 - [x] Add comments in the component
 - [x] Clear form
-
-Sure, here's a `README.md` file that includes instructions on how to run the application based on the provided `package.json` scripts.
 
 ## Prerequisites
 
