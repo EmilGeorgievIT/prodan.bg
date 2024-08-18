@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useRegister } from "../../hooks/useAuth";
 import { useForm } from "../../hooks/useForm";
-import bannerImage from '../../../public/images/banner2.jpg'
+import bannerImage from '/images/banner2.jpg'
 import Intro from '../Intro/intro';
 
 

@@ -9,28 +9,24 @@ import { useState } from "react";
 
 const addPostSchema = Yup.object().shape({
     title: Yup.string()
-      .min(2, 'Too Short!')
-      .max(50, 'Too Long!')
-      .required('Required'),
-    category: Yup.string()
-      .required('Required'),
-    condition: Yup.string()
-      .required('Required'),
+        .min(2, 'Too Short!')
+        .max(50, 'Too Long!')
+        .required('Required'),
     description: Yup.string()
-      .min(10, 'Too Short!')
-      .max(1000, 'Too Long!')
-      .required('Required'),
+        .min(10, 'Too Short!')
+        .max(1000, 'Too Long!')
+        .required('Required'),
     email: Yup.string()
-      .email('Invalid email')
-      .required('Required'),
+        .email('Invalid email')
+        .required('Required'),
     location: Yup.string()
-      .required('Required'),
+        .required('Required'),
     price: Yup.number()
-      .integer('Invalid price')
-      .required('Required'),
+        .integer('Invalid price')
+        .required('Required'),
     phoneNumber: Yup.number()
-      .integer('Phone number format 085XXXXXXX')
-      .required('Required')
+        .integer('Phone number format 085XXXXXXX')
+        .required('Required')
 });
 
 export default function PostCreate() {
@@ -47,12 +43,10 @@ export default function PostCreate() {
             setImage(reader.result)
           }
         }
-        console.log(image);
     }
 
-    const { isAuthenticated, userId } = useAuthContext();
+    const {  userId } = useAuthContext();
 
-    const [submitted, setSubmitted] = useState({});
     const [image, setImage] = useState('');
     const items = [
         { name: 'House & DIY', icon: 'home' },
@@ -116,129 +110,131 @@ export default function PostCreate() {
                                         }
                                     }}
                                     >
-                                    {({ errors, touched }) => (
-                                        <Form className='form-add card'>
-                                            <div className="form__head card-header">
-                                                <h4 className='card-title'>
-                                                    Add post
-                                                </h4>
-                                            </div>
-
-                                            <div className="from__body card-body">
-                                                <div className="form-row">
-                                                    <div className="form-group col">
-                                                        <label htmlFor="title">Ad Title *</label>
-                                                        
-                                                        <Field className="form-control" id="title" placeholder="Title" name="title" required/>
-                                                            {errors.title && touched.title ? (
-                                                                <div className="invalid-feedback">{errors.title}</div>
-                                                            ) : null}
+                                        {({ errors, touched }) => {
+                                            return (
+                                                <Form className='form-add card'>
+                                                    <div className="form__head card-header">
+                                                        <h4 className='card-title'>
+                                                            Add post
+                                                        </h4>
                                                     </div>
-                                                </div>
+
+                                                    <div className="from__body card-body">
+                                                        <div className="form-row">
+                                                            <div className="form-group col">
+                                                                <label htmlFor="title">Ad Title *</label>
+                                                        
+                                                                <Field className="form-control" id="title" placeholder="Title" name="title" required />
+                                                                {errors.title && touched.title ? (
+                                                                    <div className="alert alert-warning">{errors.title}</div>
+                                                                ) : null}
+                                                            </div>
+                                                        </div>
                                                 
-                                                <div className="form-row ">
-                                                    <div className="form-group col">
-                                                        <label htmlFor="category-select">Category *</label>
+                                                        <div className="form-row ">
+                                                            <div className="form-group col">
+                                                                <label htmlFor="category-select">Category *</label>
                                                         
-                                                        <Field id='category-select' className="custom-select" component="select" name="category">
-                                                            {
-                                                                items.map((item, index) =>
-                                                                    <option key={index}>
-                                                                        {item.name}
-                                                                    </option>
-                                                                )
-                                                            }
+                                                                <Field id='category-select' className="custom-select" component="select" name="category">
+                                                                    {
+                                                                        items.map((item, index) =>
+                                                                            <option key={index}>
+                                                                                {item.name}
+                                                                            </option>
+                                                                        )
+                                                                    }
 
-                                                            {errors.category && touched.category ? (
-                                                                <div className="invalid-feedback">{errors.category}</div>
-                                                            ) : null}
-                                                        </Field>
-                                                    </div>
-                                                </div>
+                                                                    {errors.category && touched.category ? (
+                                                                        <div className="alert alert-warning">{errors.category}</div>
+                                                                    ) : null}
+                                                                </Field>
+                                                            </div>
+                                                        </div>
                                             
-                                                <div className="form-row">
-                                                    <div className="form-group col-md-6 col-sm-12">
-                                                        <label htmlFor="price">Price *</label>
+                                                        <div className="form-row">
+                                                            <div className="form-group col-md-6 col-sm-12">
+                                                                <label htmlFor="price">Price *</label>
                                                         
-                                                        <Field className='form-control' placeholder='0$' name="price" id="price" />
-                                                            {errors.price && touched.price ? (
-                                                                <div className='invalid-feedback'>{errors.price}</div>
-                                                            ) : null}
-                                                    </div>
+                                                                <Field className='form-control' placeholder='0$' name="price" id="price" />
+                                                                {errors.price && touched.price ? (
+                                                                    <div className='alert alert-warning'>{errors.price}</div>
+                                                                ) : null}
+                                                            </div>
 
-                                                    <div className="form-group col-md-6 col-sm-12">
-                                                        <label htmlFor="condition">Condition *</label>
+                                                            <div className="form-group col-md-6 col-sm-12">
+                                                                <label htmlFor="condition">Condition *</label>
                                                         
-                                                        <Field name='condition' component="select" id='condition-select' className="custom-select">
-                                                            <option name='condition'>New</option>
-                                                            <option name='condition'>Used</option>
-                                                        </Field>
-                                                    </div>
-                                                </div>
+                                                                <Field name='condition' component="select" id='condition-select' className="custom-select">
+                                                                    <option name='condition'>New</option>
+                                                                    <option name='condition'>Used</option>
+                                                                </Field>
+                                                            </div>
+                                                        </div>
 
-                                                <div className="form-row">
-                                                    <div className="form-group col">
-                                                        <label htmlFor="description">Description *</label>
+                                                        <div className="form-row">
+                                                            <div className="form-group col">
+                                                                <label htmlFor="description">Description *</label>
                                                         
-                                                        <Field component='textarea' className="form-control" id="description" name='description' placeholder='text here..' rows="3" required />
-                                                            {errors.description && touched.description ? (
-                                                                <div className='invalid-feedback'>{errors.description}</div>
-                                                            ) : null}
-                                                    </div>
-                                                </div>
+                                                                <Field component='textarea' className="form-control" id="description" name='description' placeholder='text here..' rows="3" required />
+                                                                {errors.description && touched.description ? (
+                                                                    <div className='alert alert-warning'>{errors.description}</div>
+                                                                ) : null}
+                                                            </div>
+                                                        </div>
                                                 
-                                                <div className="form-row">
-                                                    <div className="form-group col-md-6 col-sm-12">
-                                                        <label htmlFor="location">Location *</label>
+                                                        <div className="form-row">
+                                                            <div className="form-group col-md-6 col-sm-12">
+                                                                <label htmlFor="location">Location *</label>
                                                         
-                                                        <Field type="text" name="location" id="location" placeholder='Ireland' className='form-control'  />
-                                                            {errors.location && touched.location ? (
-                                                                <div className='invalid-feedback'>{errors.location}</div>
-                                                            ) : null}
-                                                    </div>
+                                                                <Field type="text" name="location" id="location" placeholder='Ireland' className='form-control' />
+                                                                {errors.location && touched.location ? (
+                                                                    <div className='alert alert-warning'>{errors.location}</div>
+                                                                ) : null}
+                                                            </div>
 
-                                                    <div className="form-group col-md-6 col-sm-12">
-                                                        <label htmlFor="phone">Phone Number *</label>
+                                                            <div className="form-group col-md-6 col-sm-12">
+                                                                <label htmlFor="phone">Phone Number *</label>
                                                         
-                                                        <Field type="text" name="phoneNumber" id="phone" placeholder='083XXXXXXX' className='form-control'  />
-                                                            {errors.phoneNumber && touched.phoneNumber ? (
-                                                                <div className='invalid-feedback'>{errors.phoneNumber}</div>
-                                                            ) : null}
-                                                    </div>
-                                                </div>
+                                                                <Field type="text" name="phoneNumber" id="phone" placeholder='083XXXXXXX' className='form-control' />
+                                                                {errors.phoneNumber && touched.phoneNumber ? (
+                                                                    <div className='alert alert-warning'>{errors.phoneNumber}</div>
+                                                                ) : null}
+                                                            </div>
+                                                        </div>
 
-                                                <div className="form-row">
-                                                    <div className="form-group col">
-                                                        <label htmlFor="email">Email *</label>
+                                                        <div className="form-row">
+                                                            <div className="form-group col">
+                                                                <label htmlFor="email">Email *</label>
                                                         
-                                                        <Field type="email" name="email" placeholder='example@gmail.com' id="email" className='form-control' />
-                                                            {errors.email && touched.email ? (
-                                                                <div className='invalid-feedback'>{errors.email}</div>
-                                                            ) : null}
-                                                    </div>
-                                                </div>
+                                                                <Field type="email" name="email" placeholder='example@gmail.com' id="email" className='form-control' />
+                                                                {errors.email && touched.email ? (
+                                                                    <div className='alert alert-warning'>{errors.email}</div>
+                                                                ) : null}
+                                                            </div>
+                                                        </div>
                                                 
-                                                <div className="form-row">
-                                                    <div className="custom-file">
-                                                        <Field onChange={handleImage} type="file" className="custom-file-input" name='image' id="image"/>
+                                                        <div className="form-row">
+                                                            <div className="custom-file">
+                                                                <Field onChange={handleImage} type="file" className="custom-file-input" name='image' id="image" />
 
-                                                        <label className="custom-file-label" htmlFor="validatedCustomFile">Choose file...</label>
+                                                                <label className="custom-file-label" htmlFor="validatedCustomFile">Choose file...</label>
                                                         
-                                                        { !image && touched.image? (
-                                                            <div className='invalid-feedback'>Required</div>
-                                                        ) : null }
-                                                    </div>
-                                                </div>
+                                                                {!image && touched.image ? (
+                                                                    <div className='alert alert-warning'>Required</div>
+                                                                ) : null}
+                                                            </div>
+                                                        </div>
                                                 
-                                            </div>
+                                                    </div>
                                             
-                                            <div className="form-actions card-footer">
-                                                <button type="submit" className="btn btn-primary">
-                                                    Submit now
-                                                </button>
-                                            </div>
-                                        </Form>
-                                    )}
+                                                    <div className="form-actions card-footer">
+                                                        <button type="submit" className="btn btn-primary">
+                                                            Submit now
+                                                        </button>
+                                                    </div>
+                                                </Form>
+                                            )
+                                        }}
                                     </Formik>                                                    
                                 </div>
                             </div>

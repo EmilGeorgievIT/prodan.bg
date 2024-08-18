@@ -1,3 +1,5 @@
+/* eslint-disable no-extra-semi */
+/* eslint-disable react-hooks/rules-of-hooks */
 import { useEffect, useState } from 'react';
 
 export function useForm(initialValues, submitCallback, refreshInitialValues = false) {

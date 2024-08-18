@@ -32,11 +32,6 @@ export default function UserProfile(
                             Member since {(new Date(Date.now())).toLocaleDateString('en-US', 'short')}
                         </p>
                     }
-                    <div className="user__actions text-center">
-                        <Link to={`/user/ads/${_id}`} className='btn btn-success btn-user-ads'>
-                            See All ads
-                        </Link>
-                    </div>
                 </div>
 
                 <div className={`card-body ${styles.user__body}`}>

@@ -1,6 +1,6 @@
 import styles from  './gallery.module.scss'
 
-export default function Gallery({ title, date, location, category, imageBackground, viewCount, price, favorite }) {
+export default function Gallery({ title, _createdOn, location, category, imageBackground, viewCount, price, favorite }) {
     return (
         <>
             <div className={`card ${styles.gallery}`}>
@@ -32,7 +32,7 @@ export default function Gallery({ title, date, location, category, imageBackgrou
                                 
                                 {
                                     <span>
-                                        {(new Date(date)).toLocaleDateString('en-US', 'short')}
+                                        {(new Date(_createdOn)).toLocaleDateString('en-US', 'short')}
                                     </span>
                                 }
                             </li>

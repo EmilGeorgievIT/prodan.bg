@@ -1,10 +1,7 @@
 import { useParams, useNavigate, Link } from "react-router-dom";
-import { useState } from "react";
-
-
 import { useAuthContext } from "../../contexts/AuthContext";
 import { useGetOnePost, useDeletePost } from "../../hooks/usePosts";
-import { useGetAllComments } from "../../hooks/useComments";
+import { useGetAllComments, useCreateComment } from "../../hooks/useComments";
 
 import Gallery from "../Gallery/gallery";
 import Description from "../Description/description";
@@ -12,22 +9,36 @@ import Rating from "../Rating/rating";
 import Intro from "../Intro/intro";
 import UserProfile from "../UserProfile/userProfile";
 import Comment from "../Comment/comment";
-import AddComment from "../AddComment/addComment";
 
-import banner from  '../../../public/images/banner.jpg';
+import banner from  '/images/banner.jpg';
 import { useGetOneUser } from "../../hooks/useUsers";
 import Modal from "../common/Modal/modal";
 
+import { Formik, Form, Field } from 'formik';
+import * as Yup from 'yup';
+
+const addCommentSchema = Yup.object().shape({
+    title: Yup.string()
+        .min(2, 'Too Short!')
+        .max(50, 'Too Long!')
+        .required('Required'),
+    comment: Yup.string()
+        .min(10, 'Too Short!')
+        .max(500, 'Too Long!')
+        .required('Required'),
+    email: Yup.string()
+        .email('Invalid email')
+        .required('Required')
+});
+
 export default function PostDetails() {
     const navigate = useNavigate();
-    const [error, setError] = useState('');
     const { postId } = useParams();
-    // const createComment = useCreateComment();
-    const [showProjectDeleteById, setShowProjectDeleteById] = useState(null);
-    const { email, userId } = useAuthContext();
+    const {  userId } = useAuthContext();
     const [post] = useGetOnePost(postId);
-    const [user] = useGetOneUser(post?.ownerId);
+    const [user] = useGetOneUser(post.ownerId);
     const [comments, dispatch] = useGetAllComments(postId);
+    const createComment = useCreateComment();
 
     const { isAuthenticated } = useAuthContext();
     
@@ -36,7 +47,7 @@ export default function PostDetails() {
     const bannerImage = {
         backgroundImage: `url(${banner})`
     }
-    
+
     const postImage = {
         width: "100%",
         backgroundPosition: 'center center',
@@ -84,16 +95,76 @@ export default function PostDetails() {
 
                                 {
                                     comments.map(item => (
+                                        
                                         <Comment
                                             key={item._id}
                                             {...item}
                                         />
                                     ))
                                 }
+
                                 {
                                     isAuthenticated && (
-                                        <AddComment
-                                    />)
+                                        <div className='comment-create card'>
+                                            <div className="comment__head card-header">
+                                                <h3 className="comment__title card-title">
+                                                    Leave a reply
+                                                </h3>
+                                            </div>
+
+                                            <div className="comment__body card-body">
+                                                <Formik
+                                                    initialValues={{
+                                                        title: '',
+                                                        comment: '',
+                                                        email: '',
+                                                        userId,
+                                                        postId
+                                                    }}
+                                                    validationSchema={addCommentSchema}
+
+                                                    onSubmit={(values, { resetForm }) => {
+                                                        try {
+                                                            createComment(postId, values).then((newComment) => {
+                                                                dispatch({ type: 'ADD_COMMENT', payload: { ...newComment, author: { email } } });
+                                                                resetForm();
+                                                            });
+                                                        } catch (error) {
+                                                            console.log(error);
+                                                        }
+                                                    }}
+                                                >
+                                                    {({ errors, touched }) => (
+                                                        <Form className='comment'>
+                                                            <div className="from-group">
+                                                                <Field className="form-control" id="title" placeholder="Your Title" name="title" required />
+
+                                                                {errors.title && touched.title ? (
+                                                                    <div className="alert alert-warning">{errors.title}</div>
+                                                                ) : null}
+                                                            </div>
+
+                                                            <div className="from-group">
+                                                                <Field type="email" name="email" placeholder='Email address' id="email" className='form-control' />
+                                                                {errors.email && touched.email ? (
+                                                                    <div className="alert alert-warning">{errors.email}</div>
+                                                                ) : null}
+                                                            </div>
+
+                                                            <div className="form-group">
+                                                                <Field component='textarea' className="form-control" id="comment" name='comment' placeholder='Comment' rows="3" required />
+                                                                {errors.description && touched.description ? (
+                                                                    <div className="alert alert-warning">{errors.description}</div>
+                                                                ) : null}
+                                                            </div>
+
+                                                            <button type="submit" disabled={Object.keys(errors).length} className="btn btn-primary btn-sm">Send Reply</button>
+                                                        </Form>
+                                                    )}
+                                                </Formik>
+                                            </div>
+                                        </div>
+                                    )
                                 }
                             </div>
                         </div>

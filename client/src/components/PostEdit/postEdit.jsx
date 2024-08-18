@@ -17,14 +17,6 @@ const addPostSchema = Yup.object().shape({
         .required('Required'),
     email: Yup.string()
         .email('Invalid email')
-        .required('Required'),
-    location: Yup.string()
-        .required('Required'),
-    price: Yup.number()
-        .integer('Invalid price')
-        .required('Required'),
-    phoneNumber: Yup.number()
-        .integer('Phone number format 085XXXXXXX')
         .required('Required')
 });
 
@@ -68,7 +60,6 @@ export default function PostEdit() {
     const [post] = useGetOnePost(postId);
     const navigate = useNavigate();
     const editPost = useEditPosts();
-    console.log(post);
     const imageBackground = {
         backgroundImage: `url(${bannerImage})`
     };
@@ -90,8 +81,9 @@ export default function PostEdit() {
                                         initialValues={{ ...post, image: '' }}
                                         validationSchema={addPostSchema}
                                         onSubmit={values => {
+                                            const postImage = image !== '' ? image : post.image;
                                             try {
-                                                editPost({ ...values, image }, post._id).then((postData) => {
+                                                editPost({ ...values, image: postImage  }, post._id).then((postData) => {
                                                     navigate(`/post/${postData._id}`);
                                                 })
                                             } catch (error) {
@@ -99,9 +91,7 @@ export default function PostEdit() {
                                             }
                                         }}
                                     >
-                                        {({ errors, touched }) => { 
-                                            console.log(errors);
-                                            console.log(touched);
+                                        {({ errors, touched }) => {
                                             return (
                                                 <Form className='form-add card'>
                                                     <div className="form__head card-header">
@@ -117,7 +107,7 @@ export default function PostEdit() {
 
                                                                 <Field className="form-control" id="title" placeholder="Title" name="title" required />
                                                                 {errors.title && touched.title ? (
-                                                                    <div className="invalid-feedback">{errors.title}</div>
+                                                                    <div className="alert alert-warning">{errors.title}</div>
                                                                 ) : null}
                                                             </div>
                                                         </div>
@@ -136,7 +126,7 @@ export default function PostEdit() {
                                                                     }
 
                                                                     {errors.category && touched.category ? (
-                                                                        <div className="invalid-feedback">{errors.category}</div>
+                                                                        <div className="alert alert-warning">{errors.category}</div>
                                                                     ) : null}
                                                                 </Field>
                                                             </div>
@@ -148,7 +138,7 @@ export default function PostEdit() {
 
                                                                 <Field className='form-control' placeholder='0$' name="price" id="price" />
                                                                 {errors.price && touched.price ? (
-                                                                    <div className='invalid-feedback'>{errors.price}</div>
+                                                                    <div className='alert alert-warning'>{errors.price}</div>
                                                                 ) : null}
                                                             </div>
 
@@ -168,7 +158,7 @@ export default function PostEdit() {
 
                                                                 <Field component='textarea' className="form-control" id="description" name='description' placeholder='text here..' rows="3" required />
                                                                 {errors.description && touched.description ? (
-                                                                    <div className='invalid-feedback'>{errors.description}</div>
+                                                                    <div className='alert alert-warning'>{errors.description}</div>
                                                                 ) : null}
                                                             </div>
                                                         </div>
@@ -179,7 +169,7 @@ export default function PostEdit() {
 
                                                                 <Field type="text" name="location" id="location" placeholder='Ireland' className='form-control' />
                                                                 {errors.location && touched.location ? (
-                                                                    <div className='invalid-feedback'>{errors.location}</div>
+                                                                    <div className='alert alert-warning'>{errors.location}</div>
                                                                 ) : null}
                                                             </div>
 
@@ -188,7 +178,7 @@ export default function PostEdit() {
 
                                                                 <Field type="text" name="phoneNumber" id="phone" placeholder='083XXXXXXX' className='form-control' />
                                                                 {errors.phoneNumber && touched.phoneNumber ? (
-                                                                    <div className='invalid-feedback'>{errors.phoneNumber}</div>
+                                                                    <div className='alert alert-warning'>{errors.phoneNumber}</div>
                                                                 ) : null}
                                                             </div>
                                                         </div>
@@ -199,7 +189,7 @@ export default function PostEdit() {
 
                                                                 <Field type="email" name="email" placeholder='example@gmail.com' id="email" className='form-control' />
                                                                 {errors.email && touched.email ? (
-                                                                    <div className='invalid-feedback'>{errors.email}</div>
+                                                                    <div className='alert alert-warning'>{errors.email}</div>
                                                                 ) : null}
                                                             </div>
                                                         </div>
@@ -211,7 +201,7 @@ export default function PostEdit() {
                                                                 <label className="custom-file-label" htmlFor="validatedCustomFile">Choose file...</label>
 
                                                                 {!image && touched.image ? (
-                                                                    <div className='invalid-feedback'>Required</div>
+                                                                    <div className='alert alert-warning'>Required</div>
                                                                 ) : null}
                                                             </div>
                                                         </div>

@@ -1,3 +1,4 @@
+/* eslint-disable no-extra-semi */
 import { useEffect, useState } from 'react';
 import * as postAPI from '../api/ads-api';
 
@@ -50,3 +51,4 @@ export function useDeletePost() {
 
     return deletePostHandler;
 };
+

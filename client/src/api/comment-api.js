@@ -5,8 +5,7 @@ const create = (postId, text) => request.post(`${BASE_URL.SERVER_URL}/data/comme
 
 const getAll = (postId) => {
     const params = new URLSearchParams({
-        where: `postId="${postId}"`,
-        load: `author=_ownerId:users`,
+        where: `postId="${postId}"`
     });
     return request.get(`${BASE_URL.SERVER_URL}/data/comments?${params.toString()}`);
 };

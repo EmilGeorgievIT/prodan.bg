@@ -17,15 +17,20 @@ export function useGetAllPosts(userId = null) {
 
 export function useGetOneUser(userId) {
     const [user, setUser] = useState({});
-
+    
     useEffect(() => {
-        (async () => {
-            const result = await userAPI.getOne(userId);
-
-            setUser(result);
-        })();
+        if (userId !== undefined) {
+            (async () => {
+                try {
+                    const result = await userAPI.getOne(userId);
+                    setUser(result);
+                } catch (error) {
+                    console.error('Error fetching user:', error);
+                }
+            })();
+        }
     }, [userId]);
-
+    
     return [
         user,
         setUser,

@@ -42,12 +42,6 @@ export default function Profile() {
                                             My Ads
                                         </a>
 
-                                        <a className="nav-link" id="v-pills-edit-tab" data-toggle="pill" href="#v-pills-edit" role="tab" aria-controls="v-pills-edit" aria-selected="false">
-                                            <i className="material-icons">edit</i>
-
-                                            Edit My Ads
-                                        </a>
-
                                         <a className="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">
                                             <i className="material-icons">settings</i>
 

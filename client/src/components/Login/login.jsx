@@ -1,5 +1,5 @@
 import { useNavigate, Link } from "react-router-dom";
-import bannerImage from '../../../public/images/banner2.jpg'
+import bannerImage from '/images/banner2.jpg'
 import { useLogin } from "../../hooks/useAuth";
 import { useForm } from "../../hooks/useForm";
 import Intro from '../Intro/intro';

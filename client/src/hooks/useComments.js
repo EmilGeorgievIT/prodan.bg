@@ -6,7 +6,10 @@ function commentsReducer(state, action) {
         case 'GET_ALL':
            return action.payload.slice();
         case 'ADD_COMMENT':
-           return [...state, action.payload];
+            console.log([...state, action.payload])
+            return [...state, action.payload];
+        case 'REFRESH_ALL':
+            return [...state, action.payload];
         default:
             return state;
     }
@@ -17,8 +20,6 @@ export function useCreateComment() {
 
     return createHandler;
 };
-
-
 
 export function useGetAllComments(postId) {
     const [comments, dispatch] = useReducer(commentsReducer, []);
