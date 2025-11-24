@@ -3,13 +3,12 @@ import { useAuthContext } from "../../contexts/AuthContext";
 import { useGetOnePost, useDeletePost } from "../../hooks/usePosts";
 import { useGetAllComments, useCreateComment } from "../../hooks/useComments";
 
-import Gallery from "../Gallery/gallery";
-import Description from "../Description/description";
-import Rating from "../Rating/rating";
-import Intro from "../Intro/intro";
-import UserProfile from "../UserProfile/userProfile";
-import Comment from "../Comment/comment";
-
+import Gallery from "../gallery/Gallery";
+import Description from "../description/Description";
+import Rating from "../rating/Rating";
+import Intro from "../intro/Intro";
+import UserProfile from "../userProfile/UserProfile";
+import Comment from "../comment/Comment"
 import banner from  '/images/banner.jpg';
 import { useGetOneUser } from "../../hooks/useUsers";
 import Modal from "../common/Modal/modal";

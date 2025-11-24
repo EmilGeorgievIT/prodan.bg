@@ -1,6 +1,6 @@
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-import Intro from "../Intro/intro";
+import Intro from "../intro/Intro";
 import bannerImage from '/images/banner2.jpg';
 import { useAuthContext } from "../../contexts/AuthContext";
 import { useCreatePost } from "../../hooks/usePosts";

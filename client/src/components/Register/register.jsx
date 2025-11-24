@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useRegister } from "../../hooks/useAuth";
 import { useForm } from "../../hooks/useForm";
 import bannerImage from '/images/banner2.jpg'
-import Intro from '../Intro/intro';
+import Intro from '../intro/Intro';
 
 
 export default function Register() {

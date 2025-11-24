@@ -1,5 +1,5 @@
-import Intro from '../Intro/intro';
-import PostSmall from '../PostSmall/postSmall';
+import Intro from '../intro/Intro';
+import PostSmall from '../postSmall/PostSmall';
 import bannerImage from '/images/banner.jpg';
 import * as postsAPI from "../../api/ads-api";
 import { useState, useEffect } from 'react';

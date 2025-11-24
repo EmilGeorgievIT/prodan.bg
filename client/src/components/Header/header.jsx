@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import logo from '/images/logo.png';
 import avatar from '/images/avatar.png';
 import { useAuthContext } from '../../contexts/AuthContext';
-import styles from '../Header/header.module.scss';
+import styles from './header.module.scss';
 
 
 export default function Header() { 

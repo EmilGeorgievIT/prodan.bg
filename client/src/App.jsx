@@ -1,20 +1,20 @@
 import { Routes, Route } from 'react-router-dom';
 
-import Header from './components/Header/header';
-import Footer from './components/Footer/footer';
-import Home from './components/Home/home';
-import Login from './components/Login/login';
-import Register from './components/Register/register';
-import Profile from './components/Profile/profile';
-import Logout from './components/Logout/logout';
-import PostDetails from './components/PostDetails/postDetails';
+import Header from './components/header/Header';
+import Footer from './components/footer/Footer';
+import Home from './components/home/Home';
+import Login from './components/login/Login';
+import Register from './components/register/Register';
+import Profile from './components/profile/Profile';
+import Logout from './components/logout/Logout';
+import PostDetails from './components/postDetails/PostDetails';
 import { AuthContextProvider } from './contexts/AuthContext';
 import PrivateGuard from './components/common/Guards/PrivateGuard';
 import AuthGuard from './components/common/Guards/AuthGuard';
-import PostCreate from './components/PostCreate/postCreate';
+import PostCreate from './components/postCreate/PostCreate';
 
 import '../public/styles/styles.scss';
-import PostEdit from './components/PostEdit/postEdit';
+import PostEdit from './components/postEdit/PostEdit';
 
 function App() {
 

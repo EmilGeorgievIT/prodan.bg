@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-import Intro from "../Intro/intro";
+import Intro from "../intro/Intro";
 import bannerImage from '/images/banner2.jpg';
 import { useNavigate, useParams } from "react-router-dom";
 import { useGetOnePost, useEditPosts } from "../../hooks/usePosts";

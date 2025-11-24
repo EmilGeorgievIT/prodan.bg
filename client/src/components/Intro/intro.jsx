@@ -1,4 +1,4 @@
-import styles from '../Intro/intro.module.scss';
+import styles from './intro.module.scss';
 
 export default function Intro({ title, subTitle, image, children }) {
     return (

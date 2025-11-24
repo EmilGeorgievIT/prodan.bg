@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import styles from '../Profile/profile.module.scss';
+import styles from './profile.module.scss';
 import * as postsAPI from "../../api/ads-api";
-import PostSmall from "../PostSmall/postSmall";
+import PostSmall from "../postSmall/PostSmall";
 import avatar from '/images/avatar.png';
 import { useAuthContext } from "../../contexts/AuthContext";
 

@@ -2,7 +2,7 @@ import { useNavigate, Link } from "react-router-dom";
 import bannerImage from '/images/banner2.jpg'
 import { useLogin } from "../../hooks/useAuth";
 import { useForm } from "../../hooks/useForm";
-import Intro from '../Intro/intro';
+import Intro from '../intro/Intro';
 
 export default function Login() {
     const login = useLogin();
