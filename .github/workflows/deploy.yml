@@ -27,7 +27,7 @@ jobs:
         run: cd client && npm install
 
       - name: Build client
-        run: cd client && npm run build && npm run start
+        run: cd client && npm run build && npm run dev
 
   deploy:
     needs: build-test
