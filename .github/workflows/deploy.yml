@@ -5,7 +5,7 @@ on:
     branches: ["main"]
 
 jobs:
-  deploy:
+  build-test:
     runs-on: ubuntu-latest
 
     steps:
@@ -16,33 +16,26 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
+          cache: npm
 
-      # --------------------------
-      # Install server dependencies
-      # --------------------------
-      - name: Install server
-        run: |
-          cd server
-          npm install
+      # Server
+      - name: Install server deps
+        run: cd server && npm install
 
-      # --------------------------
-      # Install + build client
-      # --------------------------
-      - name: Install client
-        run: |
-          cd client
-          npm install
+      # Client
+      - name: Install client deps
+        run: cd client && npm install
 
       - name: Build client
-        run: |
-          cd client
-          npm run build
+        run: cd client && npm run build
 
-      # --------------------------
-      # Deploy to Render services
-      # --------------------------
-      - name: Deploy Server to Render
+  deploy:
+    needs: build-test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Trigger Server Deploy
         run: curl -X POST ${{ secrets.RENDER_SERVER_HOOK }}
 
-      - name: Deploy Client to Render
+      - name: Trigger Client Deploy
         run: curl -X POST ${{ secrets.RENDER_CLIENT_HOOK }}
